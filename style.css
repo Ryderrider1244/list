@@ -1,0 +1,277 @@
+
+/* ===== Global Styles ===== */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f5f7;
+    color: #222;
+}
+
+
+/* ===== Overall Layout ===== */
+
+.site-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+
+/* ===== Sidebar ===== */
+
+.sidebar {
+    width: 240px;
+    flex-shrink: 0;
+    padding: 28px 16px;
+    background: #20242c;
+    color: white;
+}
+
+.site-title {
+    margin: 0 12px 32px;
+    font-size: 24px;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    border-radius: 8px;
+    color: #c4cad4;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+}
+
+.nav-link:hover {
+    background: #303641;
+    color: white;
+}
+
+.nav-link.active {
+    background: #3b4352;
+    color: white;
+}
+
+
+/* ===== Main Content ===== */
+
+.main-content {
+    flex: 1;
+    min-width: 0;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 32px;
+}
+
+.welcome {
+    margin-bottom: 24px;
+}
+
+.welcome h2 {
+    margin-bottom: 8px;
+}
+
+
+/* ===== Homepage Dashboard ===== */
+
+.dashboard {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+}
+
+.daily-checklist,
+.upcoming-events,
+.calendar-section {
+    padding: 24px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+}
+
+
+/* ===== Daily Checklist ===== */
+
+.daily-checklist ul {
+    padding: 0;
+    list-style: none;
+}
+
+.daily-checklist li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 0;
+}
+
+.daily-checklist input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.daily-checklist label {
+    cursor: pointer;
+}
+
+.date {
+    color: #777;
+    font-size: 14px;
+}
+
+
+/* ===== Upcoming Events ===== */
+
+.event {
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.event:last-child {
+    border-bottom: none;
+}
+
+.event h3,
+.event p {
+    margin: 6px 0;
+}
+
+.event-date {
+    color: #777;
+    font-size: 14px;
+}
+
+
+/* ===== Calendar Header ===== */
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.calendar-header h2 {
+    margin: 0;
+}
+
+.calendar-view {
+    display: flex;
+    gap: 8px;
+}
+
+.calendar-view button {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background: white;
+    cursor: pointer;
+}
+
+.calendar-view button:hover {
+    background: #f0f0f0;
+}
+
+
+/* ===== Calendar Grid ===== */
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    border-top: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+}
+
+.weekday,
+.day {
+    min-width: 0;
+    padding: 12px;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+
+.weekday {
+    text-align: center;
+    font-weight: bold;
+    background: #f8f8f8;
+}
+
+.day {
+    min-height: 90px;
+}
+
+.day.muted {
+    color: #aaa;
+    background: #fafafa;
+}
+
+.day.today {
+    color: #3568d4;
+    background: #eaf0ff;
+    font-weight: bold;
+}
+
+
+/* ===== Mobile Layout ===== */
+
+@media (max-width: 700px) {
+    .sidebar {
+        width: 180px;
+        padding: 20px 10px;
+    }
+
+    .site-title {
+        margin: 0 8px 24px;
+        font-size: 20px;
+    }
+
+    .nav-link {
+        gap: 8px;
+        padding: 10px 8px;
+        font-size: 14px;
+    }
+
+    .main-content {
+        padding: 16px;
+    }
+
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+
+    .daily-checklist,
+    .upcoming-events {
+        padding: 18px;
+    }
+
+    .calendar-section {
+        padding: 12px;
+    }
+
+    .calendar-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .weekday,
+    .day {
+        padding: 6px 2px;
+        font-size: 12px;
+    }
+
+    .day {
+        min-height: 60px;
+    }
+}
