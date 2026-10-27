@@ -24,23 +24,57 @@
         </aside>
 
         <main class="main-content">
-            <section class="welcome">
-                <h2>今天要做什麼？</h2>
-                <p>整理你的每日任務與近期活動。</p>
-            </section>
+            <button id="open-form"><span class="button-icon">+</span>新增</button>
+
+                <div id="popup" class="popup">
+                    <div class="popup-content">
+                        <button id="close-form" class="close-button">&times;</button>
+
+                        <h2>新增提醒</h2>
+
+                        <label for="task-name">提醒事項</label>
+                        <input type="text" id="task-name" placeholder="What do you need to do?">
+
+                        <label for="reminder-type">類型</label>
+                        <select id="reminder-type">
+                            <option value="daily">直到完成</option>
+                            <option value="period">時效性</option>
+                        </select>
+
+                        <div id="date-fields">
+                            <label for="start-date">Start Date</label>
+                            <label for="due-date">End Date</label>
+                            <input type="date" id="start-date">
+                            <input type="date" id="due-date">
+                        </div>
+
+                        <button id="add-task">Add task</button>
+                    </div>
+                </div>
 
             <div class="dashboard">
+
                 <section class="daily-checklist">
                     <h2>每日清單</h2>
                     <p class="date">2026年10月23日</p>
-                    <ul>
-                        <li><input type="checkbox" id="task1">
-                            <label for="task1">完成作業</label></li>
-                        <li><input type="checkbox" id="task2">
-                            <label for="task2">複習筆記</label></li>
-                        <li><input type="checkbox" id="task3">
-                            <label for="task3">整理書包</label></li>
+                    <h3>To Do</h3>
+                    <ul id="active-tasks">
+                        <li class="task">
+                            <input type="checkbox" id="task1">
+                            <label for="task1">完成作業</label>
+                        </li>
+                        <li class="task">
+                            <input type="checkbox" id="task2">
+                            <label for="task2">複習筆記</label>
+                        </li>
+                        <li class="task">
+                            <input type="checkbox" id="task3">
+                            <label for="task3">整理書包</label>
+                        </li>
                     </ul>
+
+                    <h3>Completed</h3>
+                    <ul id="completed-tasks"></ul>
                 </section>
 
                 <section class="upcoming-events">
@@ -65,5 +99,6 @@
         </main>
 
     </div>
+    <script src="script.js"></script>
 </body>
 </html>
