@@ -3,10 +3,11 @@
 
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding :0;
 }
 
 body {
-    margin: 0;
     font-family: Arial, sans-serif;
     background: #f4f5f7;
     color: #222;
@@ -124,6 +125,7 @@ body {
     border-radius: 10px;
     width: 90%;
     max-width: 400px;
+    height: 400px;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -145,15 +147,47 @@ body {
     padding: 8px;
 }
 
-.popup-content:has(#reminder-type option[value="period"]:checked) #date-fields {
+#task-name {
+    height: 60px;
+    font-size: 30px;
+}
+
+
+.popup-content:has(#reminder-type option[value="period"]:checked) #date-fields-period {
     display: grid;
 }
 
-#date-fields {
+#date-fields-period {
     display: none;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 10px 12px;
     margin: 8px 0;
+}
+
+.popup-content:has(#reminder-type option[value="daily"]:checked) #date-fields-daily {
+    display: flex;
+}
+
+#date-fields-daily {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    margin: 8px 0;
+    gap: 10px;
+}
+
+#add-task {
+    width: 200px;
+    height: 35px;
+    background-color: white;
+    color: black;
+    font-size: 1em;
+    border-radius: 10px;
+    box-shadow: 3px 2px 5px gray;
+    margin: auto auto 10px auto;
+    cursor: pointer;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 
 
@@ -213,27 +247,16 @@ input[type="checkbox"] {
 }
 
 
-/* ===== Upcoming Events ===== */
+/* ===== Task List ===== */
 
-.event {
-    padding: 12px 0;
-    border-bottom: 1px solid #eee;
+#task-list li {
+    padding: 12px;
+    margin-bottom: 10px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    list-style: none;
+
 }
-
-.event:last-child {
-    border-bottom: none;
-}
-
-.event h3,
-.event p {
-    margin: 6px 0;
-}
-
-.event-date {
-    color: #999;
-    font-size: 14px;
-}
-
 
 /* ===== Calendar Header ===== */
 

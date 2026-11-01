@@ -27,29 +27,32 @@
             <button id="open-form"><span class="button-icon">+</span>新增</button>
 
                 <div id="popup" class="popup">
-                    <div class="popup-content">
-                        <button id="close-form" class="close-button">&times;</button>
-
-                        <h2>新增提醒</h2>
-
-                        <label for="task-name">提醒事項</label>
-                        <input type="text" id="task-name" placeholder="What do you need to do?">
+                    <form id="task-form" class="popup-content">
+                        <button id="close-form" type="button" class="close-button">&times;</button>
+                    
+                        <label for="task-name"></label>
+                        <input type="text" id="task-name" placeholder="提醒事項">
 
                         <label for="reminder-type">類型</label>
                         <select id="reminder-type">
-                            <option value="daily">直到完成</option>
-                            <option value="period">時效性</option>
+                            <option value="daily">每日</option>
+                            <option value="period">期間</option>
                         </select>
 
-                        <div id="date-fields">
-                            <label for="start-date">Start Date</label>
-                            <label for="due-date">End Date</label>
+                        <div id="date-fields-period">
+                            <label for="start-date">起始時間</label>
+                            <label for="due-date">完結時間</label>
                             <input type="date" id="start-date">
                             <input type="date" id="due-date">
                         </div>
 
-                        <button id="add-task">Add task</button>
-                    </div>
+                        <div id="date-fields-daily">
+                            <label for="daily-date">設定時間</label>
+                            <input type="date" id="daily-date">
+                        </div>
+
+                        <button id="add-task" type="submit">Add task</button>
+                    </form>
                 </div>
 
             <div class="dashboard">
@@ -77,23 +80,9 @@
                     <ul id="completed-tasks"></ul>
                 </section>
 
-                <section class="upcoming-events">
-                    <h2>近期活動</h2>
-                    <article class="event">
-                        <p class="event-date">10月25日</p>
-                        <h3>數學作業截止</h3>
-                        <p>完成數學習題</p>
-                    </article>
-                    <article class="event">
-                        <p class="event-date">10月28日</p>
-                        <h3>英文報告</h3>
-                        <p>準備課堂報告</p>
-                    </article>
-                    <article class="event">
-                        <p class="event-date">10月30日</p>
-                        <h3>社團活動</h3>
-                        <p>參加社團聚會</p>
-                    </article>
+                <section class="task-section">
+                    <ul id="task-list"></ul>
+                    
                 </section>
             </div>
         </main>
