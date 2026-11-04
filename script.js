@@ -29,7 +29,8 @@ closeButton.addEventListener("click", function() {
     popup.style.display = "none";
 });
 
-let tasks =[];
+let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+let taskCounter = 0;
 const taskName = document.getElementById("task-name");
 const reminderType = document.getElementById("reminder-type");
 const startDate = document.getElementById("start-date");
@@ -37,13 +38,38 @@ const dueDate = document.getElementById("due-date");
 const dailyDate = document.getElementById("daily-date");
 const taskForm = document.getElementById("task-form");
 const taskList = document.getElementById("task-list");
+const taskPlaceholder = document.getElementById("task-placeholder");
+
+function displayTasks() {
+    taskList.innerHTML = "";
+
+    tasks.forEach(function(task) {
+        const taskListItem = document.createElement("li");
+
+        const taskNameElement = document.createElement("span");
+        taskNameElement.textContent = task.name;
+
+        const taskDate = document.createElement("span");
+
+        if (task.type === "daily") {
+            taskDate.textContent = `Starts: ${task.dailyDate}`;
+        }
+        else if (task.type === "period") {
+            taskDate.textContent = `${task.startDate} - ${task.dueDate}`;
+        }
+
+        taskListItem.appendChild(taskNameElement);
+        taskListItem.appendChild(taskDate);
+
+        taskList.appendChild(taskListItem);
+    });
+}
 
 taskForm.addEventListener("submit", function(event) {
     event.preventDefault();
 
-    const taskListItem = document.createElement("li");
-
     const task = {
+        id: taskCounter++,
         name: taskName.value,
         type: reminderType.value,
         dailyDate: dailyDate.value,
@@ -51,10 +77,59 @@ taskForm.addEventListener("submit", function(event) {
         dueDate: dueDate.value
     };
 
-    tasks.push(task);
-    taskListItem.textContent = task.name;
-    taskList.appendChild(taskListItem);
-    taskName.value ="";
+    if (taskName.value.trim() === "") {
+        return;
+    }
 
-    
+    if (reminderType.value === "daily" && dailyDate.value === "") {
+        return;
+    }
+
+    if (reminderType.value === "period" && (startDate.value === "" || dueDate.value === "")) {
+        return;
+    }
+
+    const taskListItem = document.createElement("li");
+
+    console.log(task);
+    tasks.push(task);
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    displayTasks();
+
+    taskName.value ="";
+    startDate.value =" ";
+    dueDate.value =" ";
+    dailyDate.value =" ";
+
+
+    const taskNameElement = document.createElement("span");
+    taskNameElement.textContent = task.name;
+
+    const taskDate = document.createElement("span");
+
+    if (task.type === "daily") {
+        taskDate.textContent = `Starts: ${task.dailyDate}`;
+    }
+
+    else if (task.type === "period") {
+        taskDate.textContent = `${task.startDate} - ${task.dueDate}`;
+    }
+
 });
+
+
+    function updateTaskPlaceholder() {
+    if (tasks.length === 0) {
+        taskPlaceholder.style.display = "block";
+    } else {
+        taskPlaceholder.style.display = "none";
+    }
+    };
+
+updateTaskPlaceholder();
+
+displayTasks();
+
+
+
+
