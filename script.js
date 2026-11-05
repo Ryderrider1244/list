@@ -60,6 +60,17 @@ function displayTasks() {
 
         taskListItem.appendChild(taskNameElement);
         taskListItem.appendChild(taskDate);
+        const taskId = task.id;
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "Delete";
+
+        deleteButton.addEventListener("click", function(){
+            tasks = tasks.filter(function(task) {
+            return task.id !== taskId;
+         });
+        })
+
+        taskListItem.appendChild(deleteButton);
 
         taskList.appendChild(taskListItem);
     });
