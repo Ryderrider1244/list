@@ -39,6 +39,10 @@ const dailyDate = document.getElementById("daily-date");
 const taskForm = document.getElementById("task-form");
 const taskList = document.getElementById("task-list");
 const taskPlaceholder = document.getElementById("task-placeholder");
+const today = new Date().toISOString().split("T")[0];
+
+startDate.value = today;
+dailyDate.value = today;
 
 function displayTasks() {
     taskList.innerHTML = "";
@@ -64,15 +68,20 @@ function displayTasks() {
         const deleteButton = document.createElement("button");
         deleteButton.textContent = "Delete";
 
-        deleteButton.addEventListener("click", function(){
-            tasks = tasks.filter(function(task) {
-            return task.id !== taskId;
-         });
-        })
+        deleteButton.addEventListener("click", function() {
+            tasks = tasks.filter(function(currentTask) {
+                return currentTask.id !== task.id;
+            });
+
+            localStorage.setItem("tasks", JSON.stringify(tasks));
+
+            displayTasks();
+            updateTaskPlaceholder();
+        });
 
         taskListItem.appendChild(deleteButton);
-
         taskList.appendChild(taskListItem);
+        updateTaskPlaceholder();
     });
 }
 
@@ -108,9 +117,9 @@ taskForm.addEventListener("submit", function(event) {
     displayTasks();
 
     taskName.value ="";
-    startDate.value =" ";
-    dueDate.value =" ";
-    dailyDate.value =" ";
+    startDate.value = today;
+    dueDate.value ="";
+    dailyDate.value = today;
 
 
     const taskNameElement = document.createElement("span");
@@ -129,7 +138,7 @@ taskForm.addEventListener("submit", function(event) {
 });
 
 
-    function updateTaskPlaceholder() {
+function updateTaskPlaceholder() {
     if (tasks.length === 0) {
         taskPlaceholder.style.display = "block";
     } else {
